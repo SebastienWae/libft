@@ -1,4 +1,5 @@
 # libft
+collection of c functions to manipulate string, memory and linked list
 
 ## ressources
 - https://github.com/alelievr/libft-unit-test
