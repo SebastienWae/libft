@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: swaegene <swaegene@student.42.fr>          +#+  +:+       +#+         #
+#    By: seb <seb@student.42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/02/21 12:33:22 by swaegene          #+#    #+#              #
-#    Updated: 2022/02/28 12:17:38 by swaegene         ###   ########.fr        #
+#    Updated: 2022/04/15 15:18:44 by seb              ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,16 +29,28 @@ B_SRCS := ft_lstadd_back_bonus.c ft_lstadd_front_bonus.c \
 		ft_lstnew_bonus.c ft_lstsize_bonus.c
 B_OBJS := $(B_SRCS:.c=.o)
 
-all: $(NAME)
+all: $(NAME) bonus
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) 
 	@ar rus $(NAME) $(OBJS)
 
 bonus: $(NAME) $(B_OBJS)
 	@ar rus $(NAME) $(B_OBJS)
 
-norm:
-	norminette $(SRCS)
+compile_commands.json:
+	compiledb -f make re
+
+check: CFLAGS = -fanalyzer
+check: re
+
+cc_analyze:
+	codechecker analyze compile_commands.json -o .codechecker/reports
+
+cc_parse:
+	codechecker parse .codechecker
+
+cc_store:
+	codechecker store .codechecker -n libft --url default
 
 clean:
 	rm -f $(OBJS)

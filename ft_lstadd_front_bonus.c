@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: swaegene <swaegene@student.42.fr>          +#+  +:+       +#+        */
+/*   By: seb <seb@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/26 23:40:42 by seb               #+#    #+#             */
-/*   Updated: 2022/02/28 12:22:03 by swaegene         ###   ########.fr       */
+/*   Updated: 2022/04/15 15:12:19 by seb              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
 	if (lst && new)
+	{
 		new->next = *lst;
-	if (new)
 		*lst = new;
+	}
 }
